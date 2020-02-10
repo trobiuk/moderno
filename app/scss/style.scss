@@ -1,44 +1,56 @@
-html {
-    box-sizing: border-box;
-    max-width: 100vw;
-    overflow-x: hidden;
+// переменные
+@import 'vars';
+@import 'global';
+@import 'fonts';
+.header__top-inner {
+    display: flex;
+    justify-content: space-between;
+    height: 90px;
+    align-items: center;
 }
 
-*,
-*::before,
-*::after {
-    box-sizing: inherit;
-}
-
-.container {
-    max-width: 1054px;
-    margin: 0 auto;
-    padding: 0 15px;
-}
-
-a {
-    color: inherit;
-    display: inline-block;
-    text-decoration: none;
-    outline: none;
-}
-
-ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    font-size: 0;
-    li {
-        display: inline-block;
+.header__text {
+    margin-left: auto;
+    margin-right: 50px;
+    span {
+        color: $red;
     }
 }
 
-body {
-    color: #000;
-    font-size: 14px;
-    background-color: green;
+.header__btn {
+    width: 72px;
+    padding: 4px;
+    border-radius: 4px;
+    text-align: center;
+    color: #fff;
+    font-size: 12px;
 }
 
-.box {
+.header__btn-login {
+    background-color: $red;
+}
+
+.header__btn-register {
+    background-color: $green;
+    margin-left: 7px;
+}
+
+.header__menu {
+    background-color: $bg;
+}
+
+.menu {
     display: flex;
+    align-items: center;
+    height: 60px;
+}
+
+.menu-list {
+    li+li {
+        margin-left: 40px;
+    }
+    li {
+        font-size: 14px;
+        color: #fff;
+    }
 }

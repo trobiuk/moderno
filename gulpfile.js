@@ -8,7 +8,7 @@ let gulp = require('gulp'), // require  это скрипт-загрузчик, 
     cssmin = require('gulp-cssmin'); // плагин для минимизации css файлов
 
 gulp.task('sass', () => {
-    return gulp.src('app/scss/style.scss')
+    return gulp.src('app/scss/**/*.scss')
         .pipe(sass({ outputStyle: 'compressed' })) //переводим в css (минимизованным)
         .pipe(rename({ suffix: '.min' })) // добавит суфикс к имени файла
         .pipe(autoprefixer({
@@ -58,7 +58,7 @@ gulp.task('browser-sync', () => { // https://www.browsersync.io
 });
 
 gulp.task('watch', () => { // для обновления файлов при изминении
-    gulp.watch('app/scss/style.scss', gulp.parallel('sass')); // если style.scss измениться, запустить sass
+    gulp.watch('app/scss/**/*.scss', gulp.parallel('sass')); // если style.scss измениться, запустить sass
     gulp.watch('app/*.html', gulp.parallel('html')); // если app/лубой.html измениться, запустить task html
     gulp.watch('app/js/*.js', gulp.parallel('js')); // если aapp/js/лубой.оі измениться, запустить task js
 });
