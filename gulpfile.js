@@ -23,7 +23,8 @@ gulp.task('style', () => {
             'node_modules/normalize.css/normalize.css',
             'node_modules/slick-carousel/slick/slick.css', // файли для объединения
             'node_modules/magnific-popup/dist/magnific-popup.css',
-            'node_modules/rateyo/src/jquery.rateyo.css'
+            'node_modules/rateyo/src/jquery.rateyo.css',
+            'node_modules/ion-rangeslider/css/ion.rangeSlider.css'
         ])
         .pipe(concat('libs.min.css')) // объединяем и называем
         .pipe(cssmin()) // минимизация css
@@ -35,7 +36,8 @@ gulp.task('libs-script', () => {
             'node_modules/slick-carousel/slick/slick.js', // файли для объединения
             'node_modules/magnific-popup/dist/jquery.magnific-popup.js',
             'node_modules/mixitup/dist/mixitup.js',
-            'node_modules/rateyo/src/jquery.rateyo.js'
+            'node_modules/rateyo/src/jquery.rateyo.js',
+            'node_modules/ion-rangeslider/js/ion.rangeSlider.js'
         ])
         .pipe(concat('libs.min.js')) // объединяем и называем
         .pipe(uglify()) // минимизация js
@@ -67,7 +69,7 @@ gulp.task('browser-sync', () => { // https://www.browsersync.io
 gulp.task('watch', () => { // для обновления файлов при изминении
     gulp.watch('app/scss/**/*.scss', gulp.parallel('sass')); // если style.scss измениться, запустить sass
     gulp.watch('app/*.html', gulp.parallel('html')); // если app/лубой.html измениться, запустить task html
-    gulp.watch('app/js/main.js', gulp.parallel('main-script')); // если aapp/js/main.оі измениться, запустить task js
+    gulp.watch('app/js/main.js', gulp.parallel('main-script', 'html')); // если aapp/js/main.оі измениться, запустить task main-script, 'html    
 });
 
 gulp.task('default', gulp.parallel( // запуск по дефолту командой в консоли- gulp

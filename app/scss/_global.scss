@@ -10,6 +10,27 @@ html {
     box-sizing: inherit;
 }
 
+// start прижымаем footer к низу
+html,
+body {
+    height: 100%;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.content {
+    flex: 1 0 auto;
+}
+
+.footer {
+    flex: 0 0 auto;
+}
+
+// end прижымаем footer к низу
 .container {
     max-width: 1200px;
     margin: 0 auto;
@@ -39,7 +60,6 @@ ul {
     list-style: none;
     margin: 0;
     padding: 0;
-    font-size: 0;
     li {
         display: inline-block;
     }
@@ -51,6 +71,10 @@ body {
     font-size: 15px;
     line-height: 24px;
     font-weight: 400;
+}
+
+.page-content {
+    background-color: $grey;
 }
 
 .title {
@@ -65,4 +89,35 @@ body {
 .rate-star {
     display: inline-block;
     margin-right: 13px;
+}
+
+.breadcrumbs {
+    &__inner {
+        padding: 45px 0 40px;
+    }
+    &__list {
+        li {
+            font-size: 15px;
+            position: relative;
+            &+li {
+                padding-left: 24px;
+                &::before {
+                    content: '-';
+                    position: absolute;
+                    left: 8px;
+                    color: $green;
+                }
+            }
+            &:last-child {
+                a,
+                span {
+                    //     <----------------------------- span
+                    color: $bg;
+                }
+            }
+        }
+        a {
+            color: #b0bec5;
+        }
+    }
 }
