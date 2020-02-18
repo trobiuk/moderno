@@ -28,12 +28,12 @@ $(function() {
 
 
     $('.icon-th-list').on('click', function() {
-        $('.products__item').addClass('list');
+        $('.product-page__items .products__item').addClass('list');
         $('.icon-th-large').removeClass('active');
         $(this).addClass('active');
     });
     $('.icon-th-large').on('click', function() {
-        $('.products__item').removeClass('list');
+        $('.product-page__items .products__item').removeClass('list');
         $('.icon-th-list').removeClass('active');
         $(this).addClass('active');
     });
