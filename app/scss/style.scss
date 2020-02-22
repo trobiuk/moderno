@@ -1668,13 +1668,15 @@ button.icon-sort {
 
 // end product-one
 // start 404-page
-.page-404__wrapper {
+.page-404__wrapper,
+.about__wrapper {
     border: 1px solid #dcdcdc;
     background-color: #fff;
     margin-bottom: 150px;
 }
 
-.page-404__head {
+.page-404__head,
+.about__head {
     font-size: 24px;
     color: #444;
     padding: 23px 27px;
@@ -1732,6 +1734,23 @@ button.icon-sort {
 }
 
 // end 404-page
-// start product-page
-// end product-page
+// start about-page
+.about__inner {
+    padding: 0 50px;
+}
+
+.about__box {
+    h3 {
+        font-size: 20px;
+        @include f700;
+        color: #444;
+        margin-top: 40px;
+        margin-bottom: 15px;
+    }
+    p {
+        margin-bottom: 40px;
+    }
+}
+
+// end about-page
 @import 'media';
