@@ -1,0 +1,142 @@
+html {
+    box-sizing: border-box;
+    // max-width: 100vw;
+    // overflow-x: hidden;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+// start прижымаем footer к низу
+html,
+body {
+    height: 100%;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+}
+
+.content {
+    flex: 1 0 auto;
+}
+
+.footer {
+    flex: 0 0 auto;
+}
+
+// end прижымаем footer к низу
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.container-fluid {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+@media (max-width: 720px) {
+    .container-fluid {
+        padding: 0 15px;
+    }
+}
+
+a {
+    color: inherit;
+    display: inline-block;
+    text-decoration: none;
+    outline: none;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    li {
+        display: inline-block;
+    }
+}
+
+body {
+    font-family: 'Roboto-Regular', sans-serif;
+    color: $text;
+    font-size: 15px;
+    line-height: 24px;
+    font-weight: 400;
+}
+
+.page-content {
+    background-color: $grey;
+}
+
+.title {
+    text-align: center;
+    color: $bg;
+    @include f700; // <-------  mixin
+    font-size: 36px;
+    line-height: 60px;
+    margin-bottom: 30px;
+}
+
+.rate-star {
+    display: inline-block;
+    margin-right: 13px;
+}
+
+.breadcrumbs {
+    &__inner {
+        padding: 45px 0 40px;
+        overflow: hidden; ///<-----------adaptive
+        width: 1200px; ///<-----------adaptive
+    }
+    &__list {
+        li {
+            font-size: 15px;
+            position: relative;
+            &+li {
+                padding-left: 24px;
+                &::before {
+                    content: '-';
+                    position: absolute;
+                    left: 8px;
+                    color: $green;
+                }
+            }
+            &:last-child {
+                a,
+                span {
+                    //     <----------------------------- span
+                    color: $bg;
+                }
+            }
+        }
+        a {
+            color: #b0bec5;
+        }
+    }
+}
+
+.angle-right {
+    position: relative;
+    padding-left: 15px;
+    &::before {
+        content: '\f105';
+        font-family: 'icomoon';
+        position: absolute;
+        left: 0;
+        color: $green;
+        font-size: 14px;
+    }
+}
+
+#modal {
+    display: none;
+}

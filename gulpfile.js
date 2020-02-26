@@ -8,7 +8,7 @@ let gulp = require('gulp'), // require  это скрипт-загрузчик, 
     cssmin = require('gulp-cssmin'); // плагин для минимизации css файлов
 
 gulp.task('sass', () => {
-    return gulp.src('app/scss/style.scss')
+    return gulp.src('app/scss/**/*.scss')
         .pipe(sass({ outputStyle: 'compressed' })) //переводим в css (минимизованным)
         .pipe(rename({ suffix: '.min' })) // добавит суфикс к имени файла
         .pipe(autoprefixer({
@@ -22,30 +22,44 @@ gulp.task('style', () => {
     return gulp.src([
             'node_modules/normalize.css/normalize.css',
             'node_modules/slick-carousel/slick/slick.css', // файли для объединения
-            'node_modules/magnific-popup/dist/magnific-popup.css'
+            'node_modules/magnific-popup/dist/magnific-popup.css',
+            'node_modules/rateyo/src/jquery.rateyo.css',
+            'node_modules/ion-rangeslider/css/ion.rangeSlider.css',
+            'node_modules/@fancyapps/fancybox/dist/jquery.fancybox.css',
+            'node_modules/jquery-form-styler/dist/jquery.formstyler.css',
+            'node_modules/jquery-form-styler/dist/jquery.formstyler.theme.css'
         ])
         .pipe(concat('libs.min.css')) // объединяем и называем
         .pipe(cssmin()) // минимизация css
         .pipe(gulp.dest('app/css')); // запись в нужное место
 });
 
-gulp.task('script', () => {
+gulp.task('libs-script', () => {
     return gulp.src([
             'node_modules/slick-carousel/slick/slick.js', // файли для объединения
-            'node_modules/magnific-popup/dist/jquery.magnific-popup.js'
+            'node_modules/magnific-popup/dist/jquery.magnific-popup.js',
+            'node_modules/mixitup/dist/mixitup.js',
+            'node_modules/rateyo/src/jquery.rateyo.js',
+            'node_modules/ion-rangeslider/js/ion.rangeSlider.js',
+            'node_modules/@fancyapps/fancybox/dist/jquery.fancybox.js',
+            'node_modules/jquery-form-styler/dist/jquery.formstyler.js'
         ])
         .pipe(concat('libs.min.js')) // объединяем и называем
         .pipe(uglify()) // минимизация js
         .pipe(gulp.dest('app/js')); // запись в нужное место
 });
 
-gulp.task('html', () => {
-    return gulp.src('app/*.html')
-        .pipe(browserSync.reload({ stream: true })); // для автообновления страницы в браузере
+gulp.task('main-script', () => {
+    return gulp.src([
+            'app/js/main.js'
+        ])
+        .pipe(concat('main.min.js')) // объединяем и называем
+        .pipe(uglify()) // минимизация js
+        .pipe(gulp.dest('app/js')); // запись в нужное место
 });
 
-gulp.task('js', () => {
-    return gulp.src('app/js/*.js')
+gulp.task('html', () => {
+    return gulp.src('app/*.html')
         .pipe(browserSync.reload({ stream: true })); // для автообновления страницы в браузере
 });
 
@@ -58,15 +72,16 @@ gulp.task('browser-sync', () => { // https://www.browsersync.io
 });
 
 gulp.task('watch', () => { // для обновления файлов при изминении
-    gulp.watch('app/scss/style.scss', gulp.parallel('sass')); // если style.scss измениться, запустить sass
+    gulp.watch('app/scss/**/*.scss', gulp.parallel('sass')); // если style.scss измениться, запустить sass
     gulp.watch('app/*.html', gulp.parallel('html')); // если app/лубой.html измениться, запустить task html
-    gulp.watch('app/js/*.js', gulp.parallel('js')); // если aapp/js/лубой.оі измениться, запустить task js
+    gulp.watch('app/js/main.js', gulp.parallel('main-script', 'html')); // если aapp/js/main.оі измениться, запустить task main-script, 'html    
 });
 
 gulp.task('default', gulp.parallel( // запуск по дефолту командой в консоли- gulp
     'sass',
     'style',
-    'script',
+    'libs-script',
+    'main-script',
     'watch',
     'browser-sync'
 ));
